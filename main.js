@@ -26,7 +26,7 @@ slide.style.transform = `translateX(${-slideWidth * index}px)`;
 
 // slideshow func
 const startSlide = () => {
-    setInterval(()=>{
+    slideId = setInterval(()=>{
         index++;
         slide.style.transform = `translateX(${-slideWidth * index}px)`;
         slide.style.transition = '.7s';
@@ -41,5 +41,15 @@ slide.addEventListener('transitionend', () => {
         slide.style.transform = `translateX(${-slideWidth * index}px)`;
     }
 })
+
+slideContainer.addEventListener('mouseenter', ()=>{
+    clearInterval(slideId);
+})
+
+slideContainer.addEventListener('mouseleave', ()=>{
+    startSlide();
+})
+
+nextBtn.addEventListener('click', moveToNextSide())
 
 startSlide();
